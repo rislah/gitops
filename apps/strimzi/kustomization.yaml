@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - cluster.yaml
+  - pod-monitor.yaml
+  - dashboards.yaml
+  - prometheus-rules.yaml
+  - metrics-config.yaml
+  - topics/user-known-ips.yaml
+  - topics/user-login-attempt.yaml
+  - topics/user-unknown-ip.yaml
+
+configMapGenerator:
+  - name: strimzi-dashboards
+    namespace: monitoring
+    behavior: merge
+    files:
+      - dashboards/strimzi-kafka.json
+      - dashboards/strimzi-kafka-exporter.json
+      - dashboards/strimzi-operators.json
+      - dashboards/strimzi-zookeeper.json

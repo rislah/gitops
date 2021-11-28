@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logindetection
+spec:
+  selector:
+    matchLabels:
+      app: logindetection
+  template:
+    metadata:
+      labels:
+        app: logindetection
+    spec:
+      containers:
+        - name: app
+          image: risla8/logindetection:latest
+          imagePullPolicy: Always
+          env:
+            - name: BOOTSTRAP_SERVERS
+              value: dev-kafka-bootstrap.kafka.svc.cluster.local:9092
+            - name: APPLICATION_ID
+              value: logindetection
+            - name: JMX_PORT
+              value: "8888"
+          ports:
+            - name: jmx
+              containerPort: 8888
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 1Gi

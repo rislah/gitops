@@ -1,0 +1,14 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: tracking.identity.unknown-ip
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: dev
+spec:
+  partitions: 1
+  replicas: 1
+  config:
+    segment.ms: 21600000 # 6 hours
+    segment.bytes: 512000000 # 512mb
+    retention.ms: 43200000 # 12 hours

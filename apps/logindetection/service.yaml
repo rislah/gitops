@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: logindetection
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: logindetection

@@ -1,0 +1,10 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: internal.identity.known-ips
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: dev
+spec:
+  partitions: 1
+  replicas: 1
